@@ -24,6 +24,7 @@ public class CartController {
 		{e.printStackTrace();} 
 		return con; 
 	} 
+	//insert to the cart
 	
 	public String insertCart(String productname, String description, String size, String price, String type) 
 			 { 
@@ -35,7 +36,7 @@ public class CartController {
 			 { 
 			 return "Error while connecting to the database for inserting."; 
 			 } 
-			 // create a prepared statement
+			 // create a prepared statement to insert data to table
 			 String query = " insert into cart (`cartid`,`productname`,`description`,`size`,`price`,`type`)"
 					+ " values (?, ?, ?, ?, ?,?)"; 
 
@@ -61,7 +62,7 @@ public class CartController {
 			 } 
 			 return output; 
 			 }  
-			
+	//Read the cart		
 	public String readCart()
 	{ 
 	 String output = ""; 
@@ -72,6 +73,7 @@ public class CartController {
 	 { 
 	 return "Error while connecting to the database for reading."; 
 	 } 
+	 
 	 // Prepare the html table to be displayed
 	 output = "<table border='1'><tr><th>product_name</th>" 
 	 + "<th>Description</th><th>size</th><th>Price</th>"
@@ -80,7 +82,7 @@ public class CartController {
 	 String query = "select * from cart"; 
 	 Statement stmt = con.createStatement(); 
 	 ResultSet rs = stmt.executeQuery(query); 
-	 // iterate through the rows in the result set
+	 // loop the statements
 	 while (rs.next()) 
 	 { 
 	 String cartid = Integer.toString(rs.getInt("cartid")); 
@@ -90,7 +92,7 @@ public class CartController {
 	 String price = Double.toString(rs.getDouble("price")); 
 	 String type = rs.getString("type");
 	 
-	// Add into the html table
+	// Add into the html table retreive
 	 output += "<tr><td>" + productname + "</td>"; 
 	 output += "<td>" + description + "</td>"; 
 	 output += "<td>" + size + "</td>"; 
@@ -103,7 +105,7 @@ public class CartController {
 	+ "class='btnRemove btn btn-danger' data-cartid='" + cartid + "'></td></tr>"; 
 	 } 
 	 con.close(); 
-	 // Complete the html table
+	 // retreive the html table
 	 output += "</table>"; 
 	 } 
 	catch (Exception e) 
@@ -113,7 +115,8 @@ public class CartController {
 	 } 
 	return output; 
 	}
-		
+	
+	//Update cart
 	public String updateCart(String cartid, String productname, String description, String size, 
 			 String price, String type) 
 			 { 
@@ -125,18 +128,17 @@ public class CartController {
 			 { 
 			 return "Error while connecting to the database for updating."; 
 			 } 
-			 // create a prepared statement
+			 // create prepared statement for update cart
 			 String query = "UPDATE cart SET productname=?,description=?,size=?price=?,type=? WHERE cartid=?"; 
 			 
 			 PreparedStatement preparedStmt = con.prepareStatement(query); 
-			 // binding values
+			 // binding values to 
 			 preparedStmt.setString(1, productname); 
 			 preparedStmt.setString(2, description); 
 			 preparedStmt.setString(3, size); 
 			 preparedStmt.setDouble(4, Double.parseDouble(price)); 
 			 preparedStmt.setString(5, type); 
 			 preparedStmt.setInt(6, Integer.parseInt(cartid)); 
-			// execute the statement
 			 preparedStmt.execute(); 
 			 con.close(); 
 			 String newItems = readCart(); 
@@ -150,7 +152,7 @@ public class CartController {
 			 } 
 			 return output; 
 			 }
-			 
+	//delete cart items		 
 	public String deleteCart(String cartid) 
 	 { 
 	 String output = ""; 
@@ -161,7 +163,7 @@ public class CartController {
 	 { 
 	 return "Error while connecting to the database for deleting."; 
 	 } 
-	 // create a prepared statement
+	 //delete cart items by cart id  prepared statement 
 	 String query = "delete from cart where cartid=?"; 
 	 PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 // binding values

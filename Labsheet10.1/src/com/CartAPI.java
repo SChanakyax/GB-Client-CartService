@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class PaymentAPI
+ * Servlet implementation class CartAPI
  */
 @WebServlet("/CartAPI")
 public class CartAPI extends HttpServlet {
@@ -23,20 +23,10 @@ public class CartAPI extends HttpServlet {
      */
     public CartAPI() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-	}*/
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		CartController itemObj = new CartController();
@@ -49,11 +39,9 @@ public class CartAPI extends HttpServlet {
 				response.getWriter().write(output);
 	}
 	
-	/**
-	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
-	 */
 	
-	// Convert request parameters to a Map
+	
+	// Convert request parameters to a Map the reqeat and response
 	private static Map getParasMap(HttpServletRequest request) 
 	{ 
 	 Map<String, String> map = new HashMap<String, String>(); 
@@ -76,9 +64,7 @@ public class CartAPI extends HttpServlet {
 		return map; 
 		}
 
-	/**
-	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
-	 */
+	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		CartController itemObj = new CartController();
@@ -93,9 +79,7 @@ public class CartAPI extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
-	 */
+	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		

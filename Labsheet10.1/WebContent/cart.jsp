@@ -14,9 +14,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-6">
-				<h1>CartManagement</h1>
+				<h1>CartManagement</h1><!--form to jsp pages --->
 				<form id="formItem" name="formItem">
-			<!--		Item code: <input id="cartid" name="cartid" type="text" class="form-control form-control-sm"> -->
+			<!--		Item code: <input id="cartid" name="cartid" type="text" class="form-control form-control-sm">  this is not used-->
 					Item name: <input id="productname" name="productname" type="text" class="form-control form-control-sm"> <br> Item
 					description: <input id="description" name="description" type="text"
 						class="form-control form-control-sm"> Item size: <input
@@ -30,6 +30,7 @@
 						class="btn btn-primary"> <input type="hidden"
 						id="hidItemIDSave" name="hidItemIDSave" value="">
 				</form>
+				<!-- succes msg -->
 				<div id="alertSuccess" class="alert alert-success"></div>
 				<div id="alertError" class="alert alert-danger"></div>
 				<br>
